@@ -358,3 +358,13 @@
 
 
 
+## 5. ERD
+
+
+## 6. 기술 스택
+
+- JDK 21
+- Spring Boot 3.3.5
+- Redis
+- Kafka
+- MySQL 8.4.7
