@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.util.Map;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public record KakaoUserInfoResponse(
+public record KakaoOAuthUserResponse(
         String id,
         Map<String, Object> kakaoAccount
 ) {

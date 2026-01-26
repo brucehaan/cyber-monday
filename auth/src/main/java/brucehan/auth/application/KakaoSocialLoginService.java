@@ -3,7 +3,7 @@ package brucehan.auth.application;
 import brucehan.auth.client.KakaoAccessTokenClient;
 import brucehan.auth.client.KakaoUserInfoClient;
 import brucehan.auth.client.dto.response.KakaoAccessTokenResponse;
-import brucehan.auth.client.dto.response.KakaoUserInfoResponse;
+import brucehan.auth.client.dto.response.KakaoOAuthUserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class KakaoSocialLoginService {
     private final KakaoAccessTokenClient kakaoAccessTokenClient;
     private final KakaoUserInfoClient kakaoUserInfoClient;
 
-    public KakaoUserInfoResponse login(final String code) {
+    public KakaoOAuthUserResponse login(final String code) {
         final KakaoAccessTokenResponse kakaoAccessTokenResponse = kakaoAccessTokenClient.kakaoAuth(
                 kakaoContentType,
                 code,
