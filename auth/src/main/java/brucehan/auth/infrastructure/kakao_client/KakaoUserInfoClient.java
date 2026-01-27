@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(value = "kakaoInfoClient", url = "${oauth2.client.kakao.user-info-url}")
+@FeignClient(value = "kakaoInfoClient", url = "${oauth2.client.kakao.user-info-url}") // TODO : yml로 묶기
 public interface KakaoUserInfoClient {
     @GetMapping
     KakaoOAuthUserResponse kakaoUserInfo(
