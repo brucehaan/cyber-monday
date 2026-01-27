@@ -1,6 +1,6 @@
-package brucehan.auth.client;
+package brucehan.auth.infrastructure.kakao_client;
 
-import brucehan.auth.client.dto.response.KakaoAccessTokenResponse;
+import brucehan.auth.infrastructure.kakao_client.dto.response.KakaoAccessTokenResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
