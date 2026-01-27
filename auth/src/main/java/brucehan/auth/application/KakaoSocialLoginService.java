@@ -1,9 +1,9 @@
 package brucehan.auth.application;
 
-import brucehan.auth.client.KakaoAccessTokenClient;
-import brucehan.auth.client.KakaoUserInfoClient;
-import brucehan.auth.client.dto.response.KakaoAccessTokenResponse;
-import brucehan.auth.client.dto.response.KakaoOAuthUserResponse;
+import brucehan.auth.infrastructure.kakao_client.KakaoAccessTokenClient;
+import brucehan.auth.infrastructure.kakao_client.KakaoUserInfoClient;
+import brucehan.auth.infrastructure.kakao_client.dto.response.KakaoAccessTokenResponse;
+import brucehan.auth.infrastructure.kakao_client.dto.response.KakaoOAuthUserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

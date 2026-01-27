@@ -1,11 +1,11 @@
-package brucehan.auth.client;
+package brucehan.auth.infrastructure.kakao_client;
 
-import brucehan.auth.client.dto.response.KakaoOAuthUserResponse;
+import brucehan.auth.infrastructure.kakao_client.dto.response.KakaoOAuthUserResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-@FeignClient(value = "kakaoInfoClient", url = "${oauth2.client.kakao.user-info-url}")
+@FeignClient(value = "kakaoInfoClient", url = "${oauth2.client.kakao.user-info-url}") // TODO : yml로 묶기
 public interface KakaoUserInfoClient {
     @GetMapping
     KakaoOAuthUserResponse kakaoUserInfo(
