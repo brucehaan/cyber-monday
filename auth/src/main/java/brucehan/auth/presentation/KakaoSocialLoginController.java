@@ -4,10 +4,7 @@ import brucehan.auth.infrastructure.kakao_client.dto.request.KakaoSocialLoginReq
 import brucehan.auth.application.KakaoSocialLoginService;
 import brucehan.auth.infrastructure.kakao_client.dto.response.KakaoOAuthUserResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,10 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class KakaoSocialLoginController {
     private final KakaoSocialLoginService kakaoSocialLoginService;
 
-    @PostMapping("/login/openfeign")
-    public KakaoOAuthUserResponse login(
+    @PostMapping("/sign-up/openfeign")
+    public KakaoOAuthUserResponse loginOrSignUp(
             @RequestBody KakaoSocialLoginRequest kakaoSocialLoginRequest
     ) {
-        return kakaoSocialLoginService.login(kakaoSocialLoginRequest.code());
+        return kakaoSocialLoginService.loginOrSignUp(kakaoSocialLoginRequest.code());
     }
+
+    @GetMapping("/login/callback")
+    public void callback(
+            @RequestParam String code,
+            @RequestParam String state
+    ) {
+        System.out.println("code = " + code);
+        System.out.println("state = " + state);
+    }
+
+
 }

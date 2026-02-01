@@ -24,22 +24,30 @@ public class KakaoSocialLoginService {
     @Value("${oauth2.client.kakao.grant-type}")
     private String kakaoGrantType;
 
+    @Value("${oauth2.client.kakao.client-secret}")
+    private String kakaoClientSecret;
+
     private static final String TOKEN_TYPE = "Bearer ";
 
     private final KakaoAccessTokenClient kakaoAccessTokenClient;
     private final KakaoUserInfoClient kakaoUserInfoClient;
 
-    public KakaoOAuthUserResponse login(final String code) {
+    public KakaoOAuthUserResponse loginOrSignUp(final String code) {
         final KakaoAccessTokenResponse kakaoAccessTokenResponse = kakaoAccessTokenClient.kakaoAuth(
                 kakaoContentType,
                 code,
                 kakaoClientId,
                 kakaoRedirectUri,
-                kakaoGrantType
+                kakaoGrantType,
+                kakaoClientSecret
         );
+        //
+        // 회원가입 로직도 필요
         return kakaoUserInfoClient.kakaoUserInfo(
                 TOKEN_TYPE + kakaoAccessTokenResponse.accessToken(),
-                kakaoContentType
+                kakaoContentType,
+                "user_id",
+                4724752501L
         );
     }
 }
