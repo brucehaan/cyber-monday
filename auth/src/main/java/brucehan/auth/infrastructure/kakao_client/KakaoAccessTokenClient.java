@@ -16,6 +16,7 @@ public interface KakaoAccessTokenClient {
             @RequestParam(name = "code") final String code,
             @RequestParam(name = "client_id") final String clientId,
             @RequestParam(name = "redirect_uri") final String redirectUrl,
-            @RequestParam(name = "grant_type") final String grantType
+            @RequestParam(name = "grant_type") final String grantType,
+            @RequestParam(name = "client_secret") final String clientSecret
     );
 }
