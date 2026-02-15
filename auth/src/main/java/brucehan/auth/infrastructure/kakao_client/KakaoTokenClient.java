@@ -1,16 +1,19 @@
 package brucehan.auth.infrastructure.kakao_client;
 
+import brucehan.auth.infrastructure.kakao_client.dto.PublicKeysDto;
 import brucehan.auth.infrastructure.kakao_client.dto.response.KakaoAccessTokenResponse;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "kakaoClient", url = "${oauth2.client.kakao.token-url}") // TODO : yml로 묶기
-public interface KakaoAccessTokenClient {
+@FeignClient(value = "kakaoAuthClient", url = "${oauth2.client.kakao.kakao-url}") // TODO : yml로 묶기
+public interface KakaoTokenClient {
 
     // 토큰 요청 https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#request-token
-    @PostMapping
+    @PostMapping("/oauth/token")
     KakaoAccessTokenResponse kakaoAuth(
             @RequestHeader(name = "Content-Type") final String contentType,
             @RequestParam(name = "code") final String code,
@@ -19,4 +22,8 @@ public interface KakaoAccessTokenClient {
             @RequestParam(name = "grant_type") final String grantType,
             @RequestParam(name = "client_secret") final String clientSecret
     );
+
+    @Cacheable(cacheNames = "KakaoOIDC", cacheManager = "oidcCacheManager")
+    @GetMapping("/.well-known/jwks.json")
+    PublicKeysDto getKakaoPublicKeys();
 }
