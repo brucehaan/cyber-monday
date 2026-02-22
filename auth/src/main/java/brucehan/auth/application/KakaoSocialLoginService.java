@@ -43,7 +43,6 @@ public class KakaoSocialLoginService {
 
     public KakaoOAuthUserResponse loginOrSignUp(final String code) {
         final KakaoAccessTokenResponse kakaoAccessTokenResponse = kakaoAccessTokenClient.kakaoAuth(
-                kakaoContentType,
                 code,
                 kakaoClientId,
                 kakaoRedirectUri,
@@ -51,7 +50,7 @@ public class KakaoSocialLoginService {
                 kakaoClientSecret
         );
         String idToken = kakaoAccessTokenResponse.idToken();
-        System.out.println("kakaoAccessTokenResponse.idToken() = " + idToken);
+        log.info("kakaoAccessTokenResponse.idToken() - {}", idToken);
 
         OidcDecodePayload decodePayload = kakaoOauthHelper.getOidcDecodePayload(idToken);
         log.info("decodePayload - {}", decodePayload);
