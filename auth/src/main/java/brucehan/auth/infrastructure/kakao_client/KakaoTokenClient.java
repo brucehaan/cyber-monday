@@ -4,6 +4,7 @@ import brucehan.auth.infrastructure.kakao_client.dto.PublicKeysDto;
 import brucehan.auth.infrastructure.kakao_client.dto.response.KakaoAccessTokenResponse;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface KakaoTokenClient {
 
     // 토큰 요청 https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#request-token
-    @PostMapping("/oauth/token")
+    @PostMapping(
+            value= "/oauth/token",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+    )
     KakaoAccessTokenResponse kakaoAuth(
-            @RequestHeader(name = "Content-Type") final String contentType,
             @RequestParam(name = "code") final String code,
             @RequestParam(name = "client_id") final String clientId,
             @RequestParam(name = "redirect_uri") final String redirectUrl,
