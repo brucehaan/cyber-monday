@@ -24,12 +24,12 @@
 
 ## 4. 사용자 시나리오
 
-https://github.com/f-lab-edu/cyber-monday/wiki/02.-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4
+[사용자 시나리오 위키](https://github.com/f-lab-edu/cyber-monday/wiki/02.-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4)
 
 ## 5. flow chart
 
-https://github.com/f-lab-edu/cyber-monday/wiki/03.-Flow-Chart
+[flow chart 위키](https://github.com/f-lab-edu/cyber-monday/wiki/03.-Flow-Chart)
 
 ## 6. API 목록
 
-https://github.com/f-lab-edu/cyber-monday/wiki/04.-API-%EB%AA%A9%EB%A1%9D
+[API 목록 위키](https://github.com/f-lab-edu/cyber-monday/wiki/04.-API-%EB%AA%A9%EB%A1%9D)
