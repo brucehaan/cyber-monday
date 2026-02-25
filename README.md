@@ -76,16 +76,17 @@
 
 대표 케이스만 기입했습니다. 모든 케이스를 확인하려면 [flow chart 위키](https://github.com/f-lab-edu/cyber-monday/wiki/03.-Flow-Chart)를 참고해 주세요.
 
-## CASE 7 : 쿠폰 다운로드
 
-### CASE 7-1 : 상품 상세 화면에서 브랜드 전용 쿠폰 다운로드
+### CASE 7 : 쿠폰 다운로드
+
+#### CASE 7-1 : 상품 상세 화면에서 브랜드 전용 쿠폰 다운로드
 
 <img width="511" height="698" alt="image" src="https://github.com/user-attachments/assets/a402c988-c19b-4406-917b-f5e617db03ca" />
 
 
-## CASE 8 : 상품 주문하기
+### CASE 8 : 상품 주문하기
 
-### CASE 8-1 : 상품 상세 화면에서 상품 주문
+#### CASE 8-1 : 상품 상세 화면에서 상품 주문
 
 <img alt="image" src="https://github.com/user-attachments/assets/7f599649-43b0-4d38-a6a5-c32ca7e5c151" />
 
