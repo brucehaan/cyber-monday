@@ -16,9 +16,6 @@ public class KakaoOauthClient implements OauthClient {
     @Value("${oauth2.client.kakao.redirect-uri}")
     private String kakaoRedirectUri;
 
-    @Value("${oauth2.client.kakao.content-type}")
-    private String kakaoContentType;
-
     @Value("${oauth2.client.kakao.grant-type}")
     private String kakaoGrantType;
 
@@ -44,6 +41,6 @@ public class KakaoOauthClient implements OauthClient {
 
     @Override
     public PublicKeysDto getPublicKeys() {
-        return null;
+        return tokenClient.getKakaoPublicKeys();
     }
 }
