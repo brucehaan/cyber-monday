@@ -16,11 +16,12 @@
 - Redis 7.2
 - Kafka 3.9.1
 - MySQL 8.4.8
+
 - Amazon Web Service
 
 ## 3. ERD
 
-![사이먼데이ERD](cyber-monday.png)
+![사이먼데이ERD](https://github.com/user-attachments/assets/668ec7dc-43da-4f2f-bbcd-c11cc8b4aef8)
 
 ## 4. 사용자 시나리오
 
