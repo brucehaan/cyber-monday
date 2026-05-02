@@ -7,8 +7,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import static brucehan.auth.domain.entity.CacheNames.OIDC_PUBLIC_KEYS;
 
 @FeignClient(value = "kakaoAuthClient", url = "${oauth2.client.kakao.kakao-url}") // TODO : yml로 묶기
 public interface KakaoTokenClient {
@@ -18,7 +19,7 @@ public interface KakaoTokenClient {
             value= "/oauth/token",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
     )
-    KakaoAccessTokenResponse kakaoAuth(
+    KakaoAccessTokenResponse issueToken(
             @RequestParam(name = "code") final String code,
             @RequestParam(name = "client_id") final String clientId,
             @RequestParam(name = "redirect_uri") final String redirectUrl,
@@ -26,7 +27,7 @@ public interface KakaoTokenClient {
             @RequestParam(name = "client_secret") final String clientSecret
     );
 
-    @Cacheable(cacheNames = "KakaoOIDC", cacheManager = "oidcCacheManager")
+    @Cacheable(cacheNames = OIDC_PUBLIC_KEYS, cacheManager = "oidcCacheManager")
     @GetMapping("/.well-known/jwks.json")
     PublicKeysDto getKakaoPublicKeys();
 }
