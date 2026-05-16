@@ -1,11 +1,24 @@
 package brucehan.auth.infrastructure.kakao_client.dto.response;
 
-/**
- * TODO getToken()의 반환값이 뭔지 문서 보며 찾아서 작성
- */
-public class OAuthTokenResponse {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public String getIdToken() {
-        return null;
-    }
+/**
+ * https://developers.kakao.com/docs/ko/kakaologin/rest-api#request-token-response
+ */
+public record OAuthTokenResponse(
+        @JsonProperty("access_token")
+        String accessToken,
+
+        @JsonProperty("id_token")
+        String idToken,
+
+        @JsonProperty("expires_in")
+        Integer expiresIn,
+
+        @JsonProperty("refresh_token")
+        String refreshToken,
+
+        @JsonProperty("refresh_token_expires_in")
+        Integer refreshTokenExpiresIn
+) {
 }

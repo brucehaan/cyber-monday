@@ -2,6 +2,9 @@ package brucehan.auth.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -10,13 +13,14 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Table(schema = "cybermonday", name = "members")
-public class MemberEntity extends BaseEntity {
+public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id; // TODO 이름 바꾸기. pk라는 이름은 잘 안 씀
+    private Long id;
 
     @Column(name = "member_id")
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -34,7 +38,14 @@ public class MemberEntity extends BaseEntity {
     @Column(name = "role")
     private String role;
 
-    // BaseEntity에 두기엔 가끔 나오는 컬럼이라 필요한 Entity에만 만들기로 함
+    @Column(name = "created_at", updatable = false)
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    @LastModifiedDate
+    LocalDateTime updatedAt;
+
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
