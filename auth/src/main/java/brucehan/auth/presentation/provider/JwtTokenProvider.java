@@ -7,6 +7,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;
 
+import java.security.PublicKey;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -56,7 +57,7 @@ public class JwtTokenProvider {
      */
     private Jws<Claims> getClaims(String token) {
         return Jwts.parser()
-                .verifyWith(jwtProperties.getKey())
+                .verifyWith((PublicKey) jwtProperties.getKey())
                 .build()
                 .parseSignedClaims(token);
     }

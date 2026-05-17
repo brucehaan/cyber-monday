@@ -15,11 +15,9 @@ public class Member {
     private OAuthProviderInfo oAuthProviderInfo;
 
     public Member(
-            Long memberId,
             String nickname,
             String email
     ) {
-        this.memberId = memberId;
         this.name = nickname;
         this.email = email;
     }
@@ -33,13 +31,12 @@ public class Member {
 
     public static Member fromEntity(MemberEntity entity) {
         return new Member(
-                entity.getMemberId(),
                 entity.getNickname(),
                 entity.getEmail()
         );
     }
 
     public MemberEntity toEntity() {
-        return new MemberEntity(memberId, name, email);
+        return new MemberEntity(name, email);
     }
 }

@@ -4,20 +4,20 @@ import brucehan.auth.domain.OauthProvider;
 import brucehan.auth.domain.entity.OAuthProviderInfo;
 import brucehan.auth.domain.repository.MemberRepository;
 import brucehan.auth.infrastructure.kakao_client.dto.*;
-import brucehan.auth.middleware.handler.OauthClientFactory;
+import brucehan.auth.middleware.handler.MockOAuthClientFactory;
 import brucehan.auth.presentation.provider.JwtTokenProvider;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-    private final OauthClientFactory oAuthClientFactory;
+    private final MockOAuthClientFactory oAuthClientFactory;
     private final OIDCTokenVerification oidcTokenVerification;
     private final MemberRepository memberRepository;
     private final JwtTokenProvider jwtTokenProvider;
     private final RefreshTokenService refreshTokenService;
 
-    public AuthService(OauthClientFactory oAuthClientFactory,
+    public AuthService(MockOAuthClientFactory oAuthClientFactory,
                        OIDCTokenVerification oidcTokenVerification,
                        MemberRepository memberRepository,
                        JwtTokenProvider jwtTokenProvider,
@@ -32,7 +32,7 @@ public class AuthService {
     @Transactional
     public JwtTokenDto authenticateAndRegister(LoginRequest request) {
         // id token 요청
-        OAuthClient oAuthClient = oAuthClientFactory.getClient(request.provider());
+        OAuthClient oAuthClient = oAuthClientFactory.getClientOld(request.provider());
         String idToken = oAuthClient.getToken(request.authCode()).getIdToken();
 
         // 공개키 요청
@@ -43,7 +43,7 @@ public class AuthService {
 
         // 유저 존재 여부 확인 -> 없으면 유저 생성 (= 자동 회원가입)
         Member member = memberRepository
-                .findByProviderAndSubject(request.provider(), oidcPayload.subject())
+                .findByProviderAndSubject(request.provider().getProvider(), oidcPayload.subject())
                 .map(Member::fromEntity)
                 .orElseGet(() -> createMember(oidcPayload, request.provider()));
 

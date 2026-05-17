@@ -1,16 +1,15 @@
 package brucehan.auth.application;
 
 import brucehan.auth.config.exception.ApplicationException;
-import brucehan.auth.config.exception.ApplicationExceptionType;
 import brucehan.auth.domain.entity.RefreshTokenEntity;
 import brucehan.auth.domain.repository.RefreshTokenRedisRepository;
 import brucehan.auth.infrastructure.kakao_client.dto.JwtTokenDto;
-import brucehan.auth.presentation.provider.JwtProvider;
 import brucehan.auth.presentation.provider.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import static brucehan.auth.config.exception.ApplicationExceptionType.*;
+import static brucehan.auth.config.exception.ApplicationExceptionType.JWT_REFRESH_INVALID;
+import static brucehan.auth.config.exception.ApplicationExceptionType.JWT_REFRESH_NOT_FOUND_IN_REDIS;
 
 @Service
 @RequiredArgsConstructor

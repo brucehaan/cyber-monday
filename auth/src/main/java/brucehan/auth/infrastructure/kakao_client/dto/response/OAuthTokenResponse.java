@@ -1,24 +1,34 @@
 package brucehan.auth.infrastructure.kakao_client.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 /**
  * https://developers.kakao.com/docs/ko/kakaologin/rest-api#request-token-response
  */
-public record OAuthTokenResponse(
+@Getter
+public class OAuthTokenResponse {
+
         @JsonProperty("access_token")
-        String accessToken,
+        private String accessToken;
 
         @JsonProperty("id_token")
-        String idToken,
+        private String idToken;
 
         @JsonProperty("expires_in")
-        Integer expiresIn,
+        private Integer expiresIn;
 
         @JsonProperty("refresh_token")
-        String refreshToken,
+        private String refreshToken;
 
         @JsonProperty("refresh_token_expires_in")
-        Integer refreshTokenExpiresIn
-) {
+        private Integer refreshTokenExpiresIn;
+
+        public OAuthTokenResponse(String accessToken, String idToken, Integer expiresIn, String refreshToken, Integer refreshTokenExpiresIn) {
+                this.accessToken = accessToken;
+                this.idToken = idToken;
+                this.expiresIn = expiresIn;
+                this.refreshToken = refreshToken;
+                this.refreshTokenExpiresIn = refreshTokenExpiresIn;
+        }
 }

@@ -28,4 +28,11 @@ public class JwtProperties {
     }
 
 
+    public long getAccessTokenValidityInSeconds() {
+        return 0;
+    }
+
+    public long getRefreshTokenValidityInSeconds() {
+        return 0;
+    }
 }

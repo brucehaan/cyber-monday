@@ -5,8 +5,12 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Entity
@@ -14,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(schema = "cybermonday", name = "members")
+@Table( name = "members")
 public class MemberEntity {
 
     @Id
@@ -22,21 +26,26 @@ public class MemberEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "member_id")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private Long memberId; // TODO memberId가 Long이 아닌 uuid로써 활용되는 방법 강구
-
     @Column(name = "nickname")
     private String nickname;
 
     @Column(name = "email")
     private String email;
 
+    @Column(name = "profile_url")
+    private String profileUrl;
+
     @Column(name = "savings")
     private Long savings;
 
     @Column(name = "role")
-    private String role;
+    private Set<String> role = new HashSet<>();
+
+    @Column(name = "provider")
+    private String provider;
+
+    @Column(name = "subject")
+    private String subject;
 
     @Column(name = "created_at", updatable = false)
     @CreatedDate
@@ -49,10 +58,30 @@ public class MemberEntity {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    public MemberEntity(Long id, String nickname, String email) {
-        this.memberId = id;
+    public MemberEntity(String nickname, String email) {
         this.nickname = nickname;
         this.email = email;
+    }
+
+    public void changeProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+
+    public Collection<GrantedAuthority> getSimpleGrantedAuthorities() {
+        return role.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toSet());
+    }
+
+    public Map<String, Object> toAttributeMap() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("nickname", nickname);
+        result.put("email", email);
+        result.put("profile_url", profileUrl);
+        result.put("savings", savings);
+        result.put("role", role);
+        return result;
     }
 }
 
