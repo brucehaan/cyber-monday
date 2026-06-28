@@ -18,12 +18,13 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/v1/products/{productId}")
-    public ResponseEntity<ProductResponse> findProduct() {
+    public ProductResponse findProduct() {
+
         return null;
     }
 
     @GetMapping("/v1/products")
-    public ResponseEntity<List<ProductResponse>> findAllProducts() {
+    public List<ProductResponse> findAllProducts() {
         return null;
     }
 }
