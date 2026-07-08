@@ -2,6 +2,11 @@ package brucehan.product.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 import static jakarta.persistence.FetchType.*;
 
@@ -18,20 +23,19 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "brand_name", nullable = false, length = 50)
+    @Column(nullable = false)
     private String brandName;
 
-    @Column(name = "seller", nullable = false, length = 50)
+    @Column(nullable = false)
     private String seller;
 
-    @Column(name = "price")
-    private int price;
+    private Integer price;
 
     /**
      * 주 테이블에 외래 키를 둔다
@@ -44,5 +48,11 @@ public class Product {
     @OneToOne(fetch = LAZY)
     @JoinColumn(name = "STOCK_ID")
     private Stock stock;
+
+    @CreatedDate
+    private LocalDateTime createAt;
+
+    @LastModifiedDate
+    private LocalDateTime updateAt;
 }
 
