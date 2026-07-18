@@ -11,6 +11,7 @@ import brucehan.product.presentation.response.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ public class ProductService {
 
 
     public ProductOffsetResponseDto<ProductPagedDto> getPagedProducts(ProductOffsetRequestDto request) {
-        PageRequest pageRequest = PageRequest.of(request.offset(), request.limit());
+        PageRequest pageRequest = PageRequest.of(request.pageNumber(), request.size(), Sort.by(Sort.Direction.DESC, "createdAt"));
         final Page<ProductPagedDto> content = productQueryRepository.findByOffset(pageRequest);
 
         if (content.hasContent()) {
