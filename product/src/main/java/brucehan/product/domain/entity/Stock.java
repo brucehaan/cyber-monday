@@ -16,6 +16,5 @@ public class Stock {
 
     private int quantity;
 
-    @OneToOne(mappedBy = "stock") // 주인이 아님
-    private Product product;
+    private Long productId;
 }

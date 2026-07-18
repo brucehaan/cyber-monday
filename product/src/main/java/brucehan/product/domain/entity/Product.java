@@ -51,7 +51,7 @@ public class Product {
      * - 값이 없으면 외래 키에 null을 허용해야 함
      */
     @OneToOne(fetch = LAZY)
-    @JoinColumn(name = "STOCK_ID")
+    @JoinColumn(name = "product_id")
     private Stock stock;
 
     @CreatedDate
@@ -66,8 +66,6 @@ public class Product {
         this.brandName = brandName;
         this.seller = seller;
         this.price = price;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
     }
 }
 
