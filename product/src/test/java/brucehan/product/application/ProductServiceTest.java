@@ -28,7 +28,7 @@ class ProductServiceTest {
     EntityManager em;
 
     @BeforeEach
-    void 데이터_준비() {
+    void setup() {
         em.persist(new Product("티셔츠1", "기능성", "무탠다드", "무신사", 23500));
         em.persist(new Product("티셔츠2", "기능성", "무탠다드", "무신사", 23500));
         em.persist(new Product("티셔츠3", "기능성", "무탠다드", "무신사", 23500));
@@ -36,10 +36,10 @@ class ProductServiceTest {
     }
 
     @Test
-    void 조회테스트() {
+    void testGetPagedProducts() {
         // given
         ProductOffsetRequestDto request = new ProductOffsetRequestDto(0, 5, 10);
         ProductOffsetResponseDto<ProductPagedDto> pagedProducts = productService.getPagedProducts(request);
-        log.info("{} {} {}", pagedProducts.content().get(0).getName(), pagedProducts.page(), pagedProducts.size());
+        log.info("{} {} {}", pagedProducts.content().get(0).name(), pagedProducts.page(), pagedProducts.size());
     }
 }
